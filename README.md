@@ -2,6 +2,8 @@
 
 ![status badge](https://img.shields.io/badge/status-work_in_progress-green?style=flat-square)
 
+![flora slogan](readme-assets/flora%20slogan.png)
+
 flora 是一个花园塔防游戏框架，基于 [Godot](https://godotengine.org) 游戏引擎实现。
 
 > **Godot 引擎**
