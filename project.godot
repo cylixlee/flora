@@ -12,7 +12,9 @@ config_version=5
 
 config/name="flora"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.984314, 0.984314, 0.984314, 1)
+boot_splash/image="res://assets/splash.png"
+config/icon="res://assets/icon.png"
 
 [rendering]
 
