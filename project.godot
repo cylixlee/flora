@@ -11,10 +11,19 @@ config_version=5
 [application]
 
 config/name="flora"
+run/main_scene="res://game/start_game/start_game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.984314, 0.984314, 0.984314, 1)
 boot_splash/image="res://assets/splash.png"
 config/icon="res://assets/icon.png"
+
+[autoload]
+
+Game="*res://game/tool/Game.tscn"
+
+[dotnet]
+
+project/assembly_name="flora"
 
 [rendering]
 

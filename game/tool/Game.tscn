@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://di33b0s7gi2fj"]
+
+[ext_resource type="Script" path="res://game/tool/game.gd" id="1_n2yg8"]
+[ext_resource type="Script" path="res://game/tool/save_controler.gd" id="2_narla"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_n2yg8")
+
+[node name="SaveControler" type="Node" parent="."]
+script = ExtResource("2_narla")
