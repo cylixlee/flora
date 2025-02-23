@@ -19,7 +19,7 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-Game="*res://game/tool/Game.tscn"
+Game="*res://game/tool/game.tscn"
 
 [dotnet]
 
