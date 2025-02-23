@@ -21,10 +21,6 @@ config/icon="res://assets/icon.png"
 
 Game="*res://game/tool/game.tscn"
 
-[dotnet]
-
-project/assembly_name="flora"
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
