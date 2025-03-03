@@ -33,4 +33,4 @@ class_name LevelInfo
 ## 内部记载每一局的刷怪文件（Dictionary形式）,生存模式有多少局给多少Dictionary
 @export var AI_entity_spawn: Array[Dictionary]
 ## 记载草坪格子类型
-@export var grid_value: Dictionary
+@export var grid_value: Array[Dictionary]

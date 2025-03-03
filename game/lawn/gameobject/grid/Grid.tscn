@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv56gx6iuplfn"]
+
+[ext_resource type="Script" path="res://game/lawn/gameobject/grid/grid.gd" id="1_esjws"]
+
+[node name="Grid" type="Node2D"]
+script = ExtResource("1_esjws")

@@ -1,0 +1,2 @@
+extends LawnObject
+class_name CollectObject

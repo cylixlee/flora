@@ -2,11 +2,12 @@ extends Node2D
 class_name Level
 
 #=== 常量 ===
-const LEVEL_PATH: String = "res://game/lawn/level/level/level.tscn"
+const LEVEL_PATH: String = "res://game/lawn/level/scene/level.tscn"
 
 #=== 代码运行有关变量 ===
-@onready var entity_layer: Array[Node2D] = [$EntityLayer/Layer0, $EntityLayer/Layer1, $EntityLayer/Layer2, \
-										   $EntityLayer/Layer3, $EntityLayer/Layer4, $EntityLayer/Layer5]##实体图层数组
+@onready var entity_layer: Array[Node2D] = [$SubViewport/EntityLayer/Layer0,
+$SubViewport/EntityLayer/Layer1,$SubViewport/EntityLayer/Layer2,$SubViewport/EntityLayer/Layer3,
+$SubViewport/EntityLayer/Layer4,$SubViewport/EntityLayer/Layer5]##实体图层数组
 
 #=== 游戏内容类型变量 ===
 ## 初始阳光
