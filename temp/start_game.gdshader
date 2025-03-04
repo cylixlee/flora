@@ -11,6 +11,7 @@ uniform float Position : hint_range(0, 1) = 0;
 uniform float Position_Min = 0.25;
 uniform float Position_Max = 0.5;
 uniform float Alpha : hint_range(0, 1) = 1;
+uniform sampler2D surface: source_color;
 
 vec2 rotate_uv(vec2 uv, vec2 center, float rotation, bool use_degrees){
 		float _angle = rotation;
@@ -27,7 +28,6 @@ vec2 rotate_uv(vec2 uv, vec2 center, float rotation, bool use_degrees){
 	}
 
 void fragment() {
-	
 	vec2 center_uv = UV - vec2(0.5, 0.5);
 	float gradient_to_edge = max(abs(center_uv.x), abs(center_uv.y));
 	gradient_to_edge = gradient_to_edge * Distortion;
@@ -43,8 +43,7 @@ void fragment() {
 	float remapped_time = TIME * Speed + remapped_position;
 	remapped_time = fract(remapped_time);
 	{
-		float output_range = 2.0 - (-2.0);
-		remapped_time = -2.0 + output_range * remapped_time;
+		remapped_time = -2.0 + 4.0 * remapped_time;
 	}
 	
 	vec2 offset_uv = vec2(rotaded_uv.xy) + vec2(remapped_time, 0.0);
@@ -62,8 +61,9 @@ void fragment() {
 		float input_range = offset_minus - offset_plus;
 		remapped_line = (line - offset_plus) / input_range;
 	}
-	remapped_line = remapped_line * Brightness;
+	remapped_line *= Brightness;
 	remapped_line = min(remapped_line, Alpha);
-	COLOR.rgb = vec3(COLOR.xyz) * vec3(remapped_line);
-	COLOR.a = remapped_line;
+	
+	vec4 surface_tex = texture(surface, UV);
+	COLOR.rgba *= vec4(remapped_line) * surface_tex.a;
 }

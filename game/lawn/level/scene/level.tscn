@@ -27,6 +27,7 @@ texture = SubResource("ViewportTexture_28hvo")
 [node name="EventManager" type="Node" parent="."]
 
 [node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
 
 [node name="BackGroundLayer" type="Node2D" parent="SubViewport"]
 

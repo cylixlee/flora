@@ -8,3 +8,7 @@ script = ExtResource("1_n2yg8")
 
 [node name="SaveControler" type="Node" parent="."]
 script = ExtResource("2_narla")
+
+[node name="Shader" type="Node" parent="."]
+
+[node name="GameScene" type="Node" parent="."]
