@@ -92,10 +92,10 @@ func pos_in_area(_pos:Vector2)->bool:##检测一个vector2代表的全局坐标�
 ##==================动画相关===========================
 func anim_play(_anim_name:String,_play_speed:float):##一个中间函数
 	if animated_sprite:
-		animated_sprite.play(_anim_name,_play_speed)
+		animated_sprite.call_deferred("play",_anim_name,_play_speed)
 	else:
 		if animation_player:
-			animation_player.play(_anim_name,-1,_play_speed)
+			animation_player.call_deferred("play",_anim_name,-1,_play_speed)
 
 ##==================生命周期相关===========================
 func enter_game():##开启游戏性交互功能，一般调用在程序层面的初始化结束

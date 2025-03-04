@@ -1,0 +1,156 @@
+[gd_scene load_steps=28 format=3 uid="uid://chbp2dexnoth"]
+
+[ext_resource type="Script" path="res://temp/shader_example.gd" id="1_cy85h"]
+[ext_resource type="Texture2D" uid="uid://bv6rxw4jucedj" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0011.png" id="2_wiui8"]
+[ext_resource type="Texture2D" uid="uid://ccqnpflsfghdn" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0012.png" id="3_ah3m0"]
+[ext_resource type="Texture2D" uid="uid://bfhbm8op7d6u7" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0013.png" id="4_mwjqc"]
+[ext_resource type="Texture2D" uid="uid://dr3yyx7ukch6i" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0014.png" id="5_mo8bm"]
+[ext_resource type="Texture2D" uid="uid://csdvee2sjnqb7" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0015.png" id="6_5jmfb"]
+[ext_resource type="Texture2D" uid="uid://crqyeccg8f5ha" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0016.png" id="7_pfkh3"]
+[ext_resource type="Texture2D" uid="uid://05dcfw7eenfp" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0017.png" id="8_8ihgu"]
+[ext_resource type="Texture2D" uid="uid://ddisduxhccxth" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0018.png" id="9_nb7ek"]
+[ext_resource type="Texture2D" uid="uid://cr1ytylksekcw" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0019.png" id="10_idxck"]
+[ext_resource type="Texture2D" uid="uid://cplg7jxn4v084" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0020.png" id="11_cfd34"]
+[ext_resource type="Texture2D" uid="uid://c7y6fp68vnoel" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0021.png" id="12_5w8wh"]
+[ext_resource type="Texture2D" uid="uid://vv5uuf3ky6oj" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0022.png" id="13_w8vmi"]
+[ext_resource type="Texture2D" uid="uid://dhi4d37o7j3v3" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0001.png" id="14_wc0c2"]
+[ext_resource type="Texture2D" uid="uid://cxgvnr6krpneq" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0002.png" id="15_egnt7"]
+[ext_resource type="Texture2D" uid="uid://b2kdos8hsxd4c" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0003.png" id="16_b58rj"]
+[ext_resource type="Texture2D" uid="uid://cn8hkyrq2h7wl" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0004.png" id="17_rkqv7"]
+[ext_resource type="Texture2D" uid="uid://e1bhou072h87" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0005.png" id="18_vk0wx"]
+[ext_resource type="Texture2D" uid="uid://c5dm64qyyt8cy" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0006.png" id="19_itcmf"]
+[ext_resource type="Texture2D" uid="uid://c8ikarcseuan7" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0007.png" id="20_7a7c8"]
+[ext_resource type="Texture2D" uid="uid://b2ll2etendd0n" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0008.png" id="21_cfaky"]
+[ext_resource type="Texture2D" uid="uid://ch8akyktjujh8" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0009.png" id="22_1wogs"]
+[ext_resource type="Texture2D" uid="uid://ddc5j665rk3yr" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0010.png" id="23_6h13t"]
+[ext_resource type="Shader" path="res://temp/start_game.gdshader" id="24_s0d82"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_weuhg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wiui8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ah3m0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mwjqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mo8bm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5jmfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pfkh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8ihgu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_nb7ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_idxck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cfd34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5w8wh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_w8vmi")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_wc0c2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_egnt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_b58rj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_rkqv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_vk0wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_itcmf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7a7c8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_cfaky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_1wogs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_6h13t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0ih1s"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_evdca"]
+shader = ExtResource("24_s0d82")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.7
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+
+[node name="StartGame" type="Node2D"]
+script = ExtResource("1_cy85h")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(108, 100)
+
+[node name="Sprite2D2" type="Sprite2D" parent="SubViewport"]
+centered = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
+sprite_frames = SubResource("SpriteFrames_weuhg")
+animation = &"idle"
+frame = 1
+frame_progress = 0.956347
+centered = false
+
+[node name="ShowSprite" type="Sprite2D" parent="."]
+position = Vector2(483, 392)
+scale = Vector2(1.39063, 1.33398)
+texture = SubResource("ViewportTexture_0ih1s")
+region_enabled = true
+region_rect = Rect2(0, 0, 109.379, 99.0452)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_evdca")
+offset_left = 409.0
+offset_top = 327.0
+offset_right = 555.0
+offset_bottom = 459.0
+
+[node name="Timer" type="Timer" parent="."]
