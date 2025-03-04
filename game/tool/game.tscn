@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://di33b0s7gi2fj"]
+[gd_scene load_steps=7 format=3 uid="uid://di33b0s7gi2fj"]
 
 [ext_resource type="Script" path="res://game/tool/game.gd" id="1_n2yg8"]
 [ext_resource type="Script" path="res://game/tool/save_controler.gd" id="2_narla"]
 [ext_resource type="Script" path="res://game/tool/shader_manager.gd" id="3_h6xvl"]
 [ext_resource type="Script" path="res://game/tool/game_scenes.gd" id="4_cxjl8"]
+[ext_resource type="Script" path="res://game/tool/pool_manager.gd" id="5_86k48"]
+[ext_resource type="Script" path="res://game/tool/level_manager.gd" id="6_7sfmg"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_n2yg8")
@@ -16,3 +18,9 @@ script = ExtResource("3_h6xvl")
 
 [node name="GameScenes" type="Node" parent="."]
 script = ExtResource("4_cxjl8")
+
+[node name="PoolManager" type="Node" parent="."]
+script = ExtResource("5_86k48")
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("6_7sfmg")

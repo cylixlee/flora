@@ -1,9 +1,112 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgwbm7kndxxn8"]
+[gd_scene load_steps=28 format=3 uid="uid://bgwbm7kndxxn8"]
 
 [ext_resource type="Script" path="res://game/lawn/level/scene/level.gd" id="1_t2vv5"]
+[ext_resource type="Script" path="res://game/lawn/level/scene/grid_manager.gd" id="2_4ryax"]
+[ext_resource type="Texture2D" uid="uid://boc4a1oncpxyy" path="res://assets/flora/fvm/background/布丁岛（日）.jpg" id="3_7yjta"]
+[ext_resource type="Texture2D" uid="uid://bv6rxw4jucedj" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0011.png" id="4_7k7f1"]
+[ext_resource type="Texture2D" uid="uid://ccqnpflsfghdn" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0012.png" id="5_wfgp1"]
+[ext_resource type="Texture2D" uid="uid://bfhbm8op7d6u7" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0013.png" id="6_0ajvh"]
+[ext_resource type="Texture2D" uid="uid://dr3yyx7ukch6i" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0014.png" id="7_07vhc"]
+[ext_resource type="Texture2D" uid="uid://csdvee2sjnqb7" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0015.png" id="8_npqqe"]
+[ext_resource type="Texture2D" uid="uid://crqyeccg8f5ha" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0016.png" id="9_j2s73"]
+[ext_resource type="Texture2D" uid="uid://05dcfw7eenfp" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0017.png" id="10_rctxb"]
+[ext_resource type="Texture2D" uid="uid://ddisduxhccxth" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0018.png" id="11_ehdc0"]
+[ext_resource type="Texture2D" uid="uid://cr1ytylksekcw" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0019.png" id="12_tv6qu"]
+[ext_resource type="Texture2D" uid="uid://cplg7jxn4v084" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0020.png" id="13_dlarw"]
+[ext_resource type="Texture2D" uid="uid://c7y6fp68vnoel" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0021.png" id="14_jfka4"]
+[ext_resource type="Texture2D" uid="uid://vv5uuf3ky6oj" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0022.png" id="15_4038a"]
+[ext_resource type="Texture2D" uid="uid://dhi4d37o7j3v3" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0001.png" id="16_aynnt"]
+[ext_resource type="Texture2D" uid="uid://cxgvnr6krpneq" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0002.png" id="17_phyo1"]
+[ext_resource type="Texture2D" uid="uid://b2kdos8hsxd4c" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0003.png" id="18_3qeat"]
+[ext_resource type="Texture2D" uid="uid://cn8hkyrq2h7wl" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0004.png" id="19_i4167"]
+[ext_resource type="Texture2D" uid="uid://e1bhou072h87" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0005.png" id="20_774m7"]
+[ext_resource type="Texture2D" uid="uid://c5dm64qyyt8cy" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0006.png" id="21_rdnjx"]
+[ext_resource type="Texture2D" uid="uid://c8ikarcseuan7" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0007.png" id="22_r3t8m"]
+[ext_resource type="Texture2D" uid="uid://b2ll2etendd0n" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0008.png" id="23_0343p"]
+[ext_resource type="Texture2D" uid="uid://ch8akyktjujh8" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0009.png" id="24_h7agc"]
+[ext_resource type="Texture2D" uid="uid://ddc5j665rk3yr" path="res://assets/flora/fvm/snowball_rabbit/导师雪球兔（二转）0010.png" id="25_mvs23"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_28hvo"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_54tfb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7k7f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wfgp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0ajvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_07vhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_npqqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j2s73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rctxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ehdc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tv6qu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dlarw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jfka4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4038a")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_aynnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_phyo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_3qeat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_i4167")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_774m7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_rdnjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_r3t8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_0343p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_h7agc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_mvs23")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_t2vv5")
@@ -12,13 +115,20 @@ script = ExtResource("1_t2vv5")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="ShowSprite" type="Sprite2D" parent="."]
+position = Vector2(-6, -55)
+scale = Vector2(1.21, 1.21)
+texture = SubResource("ViewportTexture_28hvo")
+centered = false
+region_enabled = true
+region_rect = Rect2(75.7974, 0, 965.769, 601.128)
+
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
 position_smoothing_enabled = true
 
-[node name="ShowSprite" type="Sprite2D" parent="."]
-texture = SubResource("ViewportTexture_28hvo")
-
 [node name="GridManager" type="Node" parent="."]
+script = ExtResource("2_4ryax")
 
 [node name="EntityManager" type="Node" parent="."]
 
@@ -26,23 +136,42 @@ texture = SubResource("ViewportTexture_28hvo")
 
 [node name="EventManager" type="Node" parent="."]
 
+[node name="BackGroundLayer" type="Node2D" parent="."]
+
+[node name="BackGroundSprite" type="Sprite2D" parent="BackGroundLayer"]
+position = Vector2(-96, -69)
+scale = Vector2(1.21, 1.21)
+texture = ExtResource("3_7yjta")
+centered = false
+
+[node name="MarkerUpLeft" type="Marker2D" parent="BackGroundLayer/BackGroundSprite"]
+position = Vector2(383.471, 106.612)
+
+[node name="MarkerDownRight" type="Marker2D" parent="BackGroundLayer/BackGroundSprite"]
+position = Vector2(925.62, 558.678)
+
+[node name="EntityLayer" type="Node2D" parent="."]
+
+[node name="Layer0" type="Node2D" parent="EntityLayer"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EntityLayer/Layer0"]
+position = Vector2(360, 52)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_54tfb")
+animation = &"idle"
+
+[node name="Layer1" type="Node2D" parent="EntityLayer"]
+
+[node name="Layer2" type="Node2D" parent="EntityLayer"]
+
+[node name="Layer3" type="Node2D" parent="EntityLayer"]
+
+[node name="Layer4" type="Node2D" parent="EntityLayer"]
+
+[node name="Layer5" type="Node2D" parent="EntityLayer"]
+
+[node name="CollectLayer" type="Node2D" parent="."]
+
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-
-[node name="BackGroundLayer" type="Node2D" parent="SubViewport"]
-
-[node name="EntityLayer" type="Node2D" parent="SubViewport"]
-
-[node name="Layer0" type="Node2D" parent="SubViewport/EntityLayer"]
-
-[node name="Layer1" type="Node2D" parent="SubViewport/EntityLayer"]
-
-[node name="Layer2" type="Node2D" parent="SubViewport/EntityLayer"]
-
-[node name="Layer3" type="Node2D" parent="SubViewport/EntityLayer"]
-
-[node name="Layer4" type="Node2D" parent="SubViewport/EntityLayer"]
-
-[node name="Layer5" type="Node2D" parent="SubViewport/EntityLayer"]
-
-[node name="CollectLayer" type="Node2D" parent="SubViewport"]
+size = Vector2i(2096, 2096)

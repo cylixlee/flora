@@ -4,3 +4,7 @@
 
 [node name="Grid" type="Node2D"]
 script = ExtResource("1_esjws")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="ShowSprite" type="Sprite2D" parent="."]

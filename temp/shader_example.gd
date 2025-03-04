@@ -10,7 +10,7 @@ func _ready():
 	timer.start()
 	anim.play("idle",1.5)
 	var new_shader:ShaderMaterial = ShaderMaterial.new()
-	new_shader.shader = preload("res://temp/be_attacked.gdshader")
+	new_shader.shader = Game.shader_manager.get_shader("blink")
 	show_sprite.material = new_shader
 	show_sprite.material.resource_local_to_scene = true
 	var new_color:Color = Color.WHITE

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://c63ntjl43ioje"]
+
+[ext_resource type="Script" path="res://game/lawn/gameobject/resource/seed_save.gd" id="1_l57ov"]
+[ext_resource type="Script" path="res://game/lawn/level/info.gd" id="2_svbi3"]
+
+[resource]
+script = ExtResource("2_svbi3")
+sun_value = 1000
+level_name = "missing"
+level_num = 0
+zombie_spawn_pool = Array[String]([])
+player_choose = true
+locked_seed = Array[ExtResource("1_l57ov")]([])
+has_convey = false
+win_mode = {}
+level_anim = {}
+terria_scene_path = ""
+level_type_path = ""
+gameobj_pre_set = {}
+music_type_path = Array[String]([])
+survive_value = 0
+AI_entity_spawn = Array[Dictionary]([])
+grid_value = Array[Dictionary]([])

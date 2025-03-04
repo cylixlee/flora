@@ -120,7 +120,7 @@ shader_parameter/Position_Min = 0.25
 shader_parameter/Position_Max = 0.5
 shader_parameter/Alpha = 1.0
 
-[node name="StartGame" type="Node2D"]
+[node name="ShaderExample" type="Node2D"]
 script = ExtResource("1_tkkst")
 
 [node name="SubViewport" type="SubViewport" parent="."]

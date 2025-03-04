@@ -5,9 +5,16 @@ class_name Level
 const LEVEL_PATH: String = "res://game/lawn/level/scene/level.tscn"
 
 #=== 代码运行有关变量 ===
-@onready var entity_layer: Array[Node2D] = [$SubViewport/EntityLayer/Layer0,
-$SubViewport/EntityLayer/Layer1,$SubViewport/EntityLayer/Layer2,$SubViewport/EntityLayer/Layer3,
-$SubViewport/EntityLayer/Layer4,$SubViewport/EntityLayer/Layer5]##实体图层数组
+@onready var entity_layer: Array[Node2D] = [$EntityLayer/Layer0,$EntityLayer/Layer1,
+$EntityLayer/Layer2,$EntityLayer/Layer3,$EntityLayer/Layer4,$EntityLayer/Layer5]##实体图层数组
+@onready var bg_layer: Node2D = $BackGroundLayer
+@onready var collect_layer: Node2D = $CollectLayer
+
+@onready var bg_sprite:Sprite2D = $BackGroundLayer/BackGroundSprite
+@onready var grids_upleft_pos:Vector2 = $BackGroundLayer/BackGroundSprite/MarkerUpLeft.global_position
+@onready var grids_downright_pos:Vector2 = $BackGroundLayer/BackGroundSprite/MarkerDownRight.global_position
+@export var grids_row:int = 7
+@export var grids_column:int = 9
 
 #=== 游戏内容类型变量 ===
 ## 初始阳光
@@ -22,20 +29,22 @@ var player_choose: bool = true
 var survival_max_value: int = 1
 ## 当前生存模式为第几轮，若等于max_value则判定关卡胜利
 var survival_curr_value: int = 0
+##===============================================================================
+var GRAVITY_VALUE:float = 10.0##重力参数
 
 
+signal init_finish(_level:Level)##关卡初始化完成的信号
+signal level_finish(_finish_flag:bool)##未完工，关卡彻底结束的信号,发射他代表要进行场景跳转了
 static func enter(level_info: LevelInfo):
-	var level_path: String = level_info.terria_scene_path
-	if FileAccess.file_exists(level_path):
-		Game.get_tree().change_scene_to_file(level_path)
-	else:
-		Game.get_tree().change_scene_to_file(LEVEL_PATH)
-	var new_level: Level = Game.get_tree().get_first_node_in_group("level")
-	new_level.level_set_value(level_info)
+	Game.level_manager.enter_level(level_info)
 
 
 func _ready():
-	add_to_group("level")
+	connect("init_finish",Game.level_manager.new_level_init,CONNECT_ONE_SHOT)
+	connect("level_finish",Game.level_manager.finish_level,CONNECT_ONE_SHOT)
+	
+	
+	init_finish.emit(self)
 
 
 func level_set_value(level_info: LevelInfo): ##关卡参数设置函数
