@@ -5,7 +5,10 @@ var pool_dic:Dictionary = {}
 
 func get_object_from_pool(_name:String):
 	if has_object(_name):
-		return pool_dic[_name].get_object()
+		var output:LawnObject = pool_dic[_name].get_object()
+		if output.object_state == LawnObject.OBJECT_STATE.SLEEP:
+			output.object_state = LawnObject.OBJECT_STATE.PREPARING
+		return output
 		
 func has_object(_name:String) -> bool:
 	if pool_dic.has(_name):

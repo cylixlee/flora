@@ -13,7 +13,7 @@ func _process(delta):
 
 func grid_update():##检测地面
 	if not ground:
-		if self is ChessEntity:
+		if self is ChessEntity or self is Grid:
 			return
 	
 	
