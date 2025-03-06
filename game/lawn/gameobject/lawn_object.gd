@@ -9,8 +9,16 @@ class_name LawnObject
 var obj_owner:LawnObject##如果属于另一个lawnobject派生类型，则保存其主人的引用
 var color_filter:Array[Color]##附加颜色数组
 
-var center_pos:Vector2 = Vector2.ZERO##中心位置，相当于这个object的下属marker(必须名为CenterMarker)的全局位置,自动获取
+##中心位置，相当于这个object的下属marker(必须名为CenterMarker)的全局位置,自动获取
+var center_pos:Vector2:get = get_center_pos
+func get_center_pos() ->Vector2:
+	if center_marker:
+		return center_marker.global_position
+	else:
+		return Vector2.ZERO
+var center_marker:Marker2D
 @export var collect_area:Vector2 = Vector2.ZERO##可以获取鼠标输入的范围大小，自动往四周延申，矩形
+@export var clct_area_skew_angle:float = 0##检测点击范围倾斜角，不会影响到他的横向长度
 var object_state:OBJECT_STATE = OBJECT_STATE.SLEEP##实体状态
 @export var has_pool:bool = false##是否是池化对象，若为true会自动出入池子
 @export var pool_name:String = ""##所属池子的名字,务必保证一个池子里所有实体都是同一个类型
@@ -18,6 +26,7 @@ var object_state:OBJECT_STATE = OBJECT_STATE.SLEEP##实体状态
 
 
 @export var press_able:bool = false##是否对玩家的输入行为敏感
+@export var show_press_arae:bool = false##显示检测玩家输入区域
 var animation_player:AnimationPlayer##两种类型的动画节点
 var animated_sprite:AnimatedSprite2D##两种类型的动画节点
 var sub_viewport:SubViewport
@@ -26,8 +35,8 @@ var show_sprite:Sprite2D
 const BLINK_SHADER_NAME:String = "blink"
 ##请保证lawnobject的全部派生类型在场景下具备一个名为"ShowSprite"的Sprite2D节点作为直接子节点,和一个SubViewport作为直接子节点
 ##将所有的美术素材放在Subviewport下面,仅有美术，动画相关素材会放在subviewport下面!!!!
-signal left_mousebutton_pressed
-signal right_mousebutton_pressed
+signal left_mousebutton_pressed(_pos:Vector2)
+signal right_mousebutton_pressed(_pos:Vector2)
 func _ready():##请勿使用instantiate()创建lawnobject派生
 	object_state = OBJECT_STATE.PREPARING
 	process_mode = PROCESS_MODE_DISABLED##ready时会默认关闭_process
@@ -37,7 +46,7 @@ func _ready():##请勿使用instantiate()创建lawnobject派生
 		if node is Sprite2D and node.name == "ShowSprite":
 			show_sprite = node
 		if node is Marker2D and node.name == "CenterMarker":
-				center_pos = node.global_position
+			center_marker = node
 	
 	if sub_viewport:		
 		for node in sub_viewport.get_children():
@@ -96,23 +105,28 @@ func _unhandled_input(event):
 func be_pressed_mouseleft(_pos:Vector2):##自身被左键摁到的函数，传入鼠标位置
 	if pos_in_area(_pos):
 		#print("pressed by left")
-		left_mousebutton_pressed.emit()
+		left_mousebutton_pressed.emit(_pos)
 	
 func be_pressed_mouseright(_pos:Vector2):##自身被右键摁到的函数
 	if pos_in_area(_pos):
 		#print("pressed by right")
-		right_mousebutton_pressed.emit()
+		right_mousebutton_pressed.emit(_pos)
 
 func pos_in_area(_pos:Vector2)->bool:##检测一个vector2代表的全局坐标是否在自身area内部
 	var _pos_upleft_x:float = center_pos.x - collect_area.x*0.5
 	var _pos_upleft_y:float = center_pos.y - collect_area.y*0.5
 	var _pos_downright_x:float = center_pos.x + collect_area.x*0.5
 	var _pos_downright_y:float = center_pos.y + collect_area.y*0.5
+	_pos = LawnObject.pos_skew_change(_pos,clct_area_skew_angle,_pos_downright_x)
 	if _pos.x >= _pos_upleft_x and _pos.x <= _pos_downright_x and _pos.y>=_pos_upleft_y and _pos.y<=_pos_downright_y:
 		return true
 	else:
 		return false
 		
+static func pos_skew_change(_pos:Vector2,_skew_angle:float,_right_border_x:float) ->Vector2:
+	##静态函数，输入需要改变的位置，倾斜角，以及右侧边界，返回一个右侧边界不变情况下的倾斜操作后的位置
+	
+	return Vector2(_pos.x,_pos.y-tan(_skew_angle)*(_right_border_x-_pos.x))
 ##==================动画相关===========================
 func shader_init():##Shader初始化,_ready时运行
 	if show_sprite:

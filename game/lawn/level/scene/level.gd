@@ -13,6 +13,7 @@ $EntityLayer/Layer2,$EntityLayer/Layer3,$EntityLayer/Layer4,$EntityLayer/Layer5]
 @onready var bg_sprite:Sprite2D = $BackGroundLayer/BackGroundSprite
 @onready var grids_upleft_pos:Vector2 = $BackGroundLayer/BackGroundSprite/MarkerUpLeft.global_position
 @onready var grids_downright_pos:Vector2 = $BackGroundLayer/BackGroundSprite/MarkerDownRight.global_position
+@onready var grid_manager:GridManager = $GridManager
 @export var grids_row:int = 7
 @export var grids_column:int = 9
 
@@ -45,7 +46,7 @@ func _ready():
 	
 	
 	init_finish.emit(self)
-
+	child_tool_init()
 
 func level_set_value(level_info: LevelInfo): ##关卡参数设置函数
 	initial_sun = level_info.sun_value
@@ -53,3 +54,5 @@ func level_set_value(level_info: LevelInfo): ##关卡参数设置函数
 	level_num = level_info.level_num
 	player_choose = level_info.player_choose
 	
+func child_tool_init():##子节点初始化
+	grid_manager.grid_manager_init()

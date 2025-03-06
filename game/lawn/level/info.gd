@@ -33,4 +33,16 @@ class_name LevelInfo
 ## 内部记载每一局的刷怪文件（Dictionary形式）,生存模式有多少局给多少Dictionary
 @export var AI_entity_spawn: Array[Dictionary] = []
 ## 记载草坪格子类型
-@export var grid_value: Array[Dictionary] = []
+@export var grid_value: Array[Dictionary] = [DEFAULT_GRID_VALUE]
+
+
+const DEFAULT_GRID_VALUE:Dictionary = {
+	"use_global_pos":false,##使用绝对全局位置
+	"global_pos_upleft":[100,100],##全局位置，左上角
+	"init_pos":[0,0],##初始相对位置,
+	"size":[7,9],##大小，[1,1]代表1*1,[1,9]代表1行9列
+	"fast_layout":true,##快速部署模式，如果为true，则会将fast_layout_type对应的地面类型铺满整个grid
+	"fast_layout_type":1,
+	"skew_angle":0,##倾斜角度，保证右侧边缘与不倾斜时一致
+	"type_array":[[]]
+}
