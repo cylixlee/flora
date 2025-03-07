@@ -4,6 +4,8 @@ class_name GridManager
 var grids:Array[Grid] = []##存储所有grid的数组
 var single_grid_size:Vector2 = Vector2.ZERO
 
+signal gridmanager_finish_init##暂时废弃
+
 func _ready():
 	pass
 

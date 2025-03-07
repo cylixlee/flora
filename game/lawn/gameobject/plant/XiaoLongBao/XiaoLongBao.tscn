@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dca8majvejkfk"]
+
+[ext_resource type="Script" path="res://game/lawn/gameobject/plant/XiaoLongBao/xiao_long_bao.gd" id="1_m3xlo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amci6"]
+
+[node name="XiaoLongBao" type="Node2D"]
+script = ExtResource("1_m3xlo")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="ShowSprite" type="Sprite2D" parent="."]
+
+[node name="CenterMarker" type="Marker2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_amci6")

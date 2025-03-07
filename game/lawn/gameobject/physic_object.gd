@@ -1,20 +1,33 @@
 extends LawnObject
 class_name PhysicObject
 
+##碰撞箱中心位置会在ready的时候与center_marker同步
 @export var physic_mode:PHYSIC_MODE = PHYSIC_MODE.NONE
 @export var vertical_direction:Vector2 = Vector2(1,0)##垂直法线方向,用于弹性逻辑判断
 
 var ground:Grid##对所处地面的引用
 var gravity_able:bool = false##重力是否对其起作用,若为true会启用下坠，以及地板类型判定
+var z_height:int ##伪z轴高度
+var physic_area:Area2D
+
+func _ready():
+	super()
+	for _node in get_children():
+		if _node is Area2D:
+			physic_area = _node
+	if physic_area and center_marker:
+		physic_area.global_position = center_marker.global_position
 
 func _process(delta):
 	super(delta)
 	grid_update()
 
 func grid_update():##检测地面
-	if not ground:
-		if self is ChessEntity or self is Grid:
-			return
+	if self is ChessEntity or self is Grid or obj_owner:
+		return
+	if not physic_area:
+		return
+	
 	
 	
 

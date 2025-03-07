@@ -15,6 +15,14 @@ const GRID_DIC:Dictionary = {
 
 var single_grids:Array = []##二维数组
 
+var grid_velocity:float = 0.0
+var grid_direction:Vector2 = Vector2(1,0):set = set_grid_direction,get = get_grid_direction
+func set_grid_direction(_vec:Vector2):
+	grid_direction = _vec.normalized()
+func get_grid_direction() -> Vector2:
+	return grid_direction.normalized()
+
+
 const GRID_PATH:String = "res://game/lawn/gameobject/grid/grid.tscn"
 
 signal grid_init_finish
@@ -56,8 +64,12 @@ func create_single_grids(_fast_layout:bool,_fast_type:GRID_TYPE,_type_array:Arra
 			for _s_grid:_single_grid in _row:
 				_s_grid.grid_type.pop_back()
 				_s_grid.grid_type.append(_fast_type)
-			
+				
 
+			
+func try_add_chess(_pos:Vector2,_entity:ChessEntity):##通过鼠标全局位置种植一个植物，如果满足grid相关条件就种植
+	##并返回true，否则返回false
+	pass
 
 		
 func grid_clicked_mouseleft(_pos:Vector2):##被左键戳中
@@ -83,12 +95,19 @@ func get_clicked_single_grid(_pos:Vector2) -> _single_grid:##返回一个被点�
 	if _pos_array[0] < 0:
 		return null
 	return single_grids[_pos_array[1]][_pos_array[0]]
+	
+func get_clicked_grid_center(_pos:Vector2):##根据点击坐标返回该格子中心坐标
+	var _pos_array:Array = get_clicked_grid_pos(_pos)
+	if _pos_array[0] < 0:
+		return Vector2.ZERO
+	var _single_grid_size:Vector2 = Game.level_manager.curr_level.grid_manager.single_grid_size
+	return Vector2(global_position.x + float(_pos_array[0])*_single_grid_size.x,global_position.y + float(_pos_array[1])*_single_grid_size.y)
 
 enum GRID_TYPE{
 	NONE,##虚空
 	GRASS,##草皮，允许种植
-	DISABLE,##禁用，往往使用在地块被非植物，僵尸的实体占据时
-	OCCUPY,##其他chessentity实体占用
+	DISABLE,##禁用，往往使用在地块被非植物的实体占据时
+	OCCUPY,##其他chessentity实体(通常是植物)占用
 	WATER,##水
 	LAVA,##熔岩
 	BARE,##裸地
@@ -127,7 +146,43 @@ class _single_grid:##内部类型，会记住每个格子的chessentity
 			_entity.global_position += _add_pos
 			
 	func try_add_entity(_entity:ChessEntity):
+		match  _entity.chess_type:
+			0:##grid_change类型
+				if grid_change_entity.size() < grid_change_max and check_entity_need_type(_entity):
+					grid_change_entity.append(_entity)
+					return true
+				else:
+					return false
+			1:##main类型
+				if main_entity.size() < main_max and check_entity_need_type(_entity):
+					main_entity.append(_entity)
+					return true
+				else:
+					return false
+			2:##shell类型
+				pass
+			3:##flying类型
+				pass
+	
+	func try_shovel(_shovel_setting:Array = [ChessEntity.CHESS_TYPE.MAIN,ChessEntity.CHESS_TYPE.SHELL,
+	ChessEntity.CHESS_TYPE.GRID_CHANGE,ChessEntity.CHESS_TYPE.FLYING]):
+		##尝试铲除，会传入一个铲子的优先级函数,在最前面的会最优先铲除
+		pass
+		
+	func get_entity():
 		pass
 	
-	
-	
+	func get_curr_type() ->int:##获取当前格子的地形类型
+		var _grid_type_size:int = grid_type.size()
+		if _grid_type_size > 0:
+			return grid_type[_grid_type_size - 1]
+		else:
+			grid_type.append(Grid.GRID_TYPE.NONE)
+			return Grid.GRID_TYPE.NONE
+			
+	func check_entity_need_type(_entity:ChessEntity):##尝试了解当前地形是否适宜chessentity的种植
+		var output:bool = false
+		for _need_type:int in _entity.need_ground_type:
+			if _need_type == get_curr_type():
+				output = true
+		return output
