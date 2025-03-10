@@ -8,12 +8,12 @@ class_name PhysicObject
 var ground:Grid##对所处地面的引用
 var gravity_able:bool = false##重力是否对其起作用,若为true会启用下坠，以及地板类型判定
 var z_height:int ##伪z轴高度
-var physic_area:Area2D
+var physic_area:Area2D##需要作为自身碰撞箱的Area2D被命名为"PhysicArea"
 
 func _ready():
 	super()
 	for _node in get_children():
-		if _node is Area2D:
+		if _node is Area2D and _node.name == "PhysicArea":
 			physic_area = _node
 	if physic_area and center_marker:
 		physic_area.global_position = center_marker.global_position
@@ -27,7 +27,17 @@ func grid_update():##检测地面
 		return
 	if not physic_area:
 		return
-	
+	if not center_marker:
+		return
+	var _grids:Array[Grid] = Game.level_manager.curr_level.grid_manager.grids
+	var _check:bool = false
+	for _grid:Grid in _grids:
+		if _grid.pos_in_area(center_pos):
+			ground = _grid
+			_check = true
+	if not _check:
+		ground = null
+		
 	
 	
 

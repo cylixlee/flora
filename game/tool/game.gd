@@ -5,3 +5,4 @@ class_name _Game
 @onready var shader_manager: ShaderManager = $ShaderManager
 @onready var game_scenes: GameScenes = $GameScenes
 @onready var level_manager: LevelManager = $LevelManager
+@onready var tool:GameTool = $GameTool

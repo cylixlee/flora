@@ -14,6 +14,7 @@ $EntityLayer/Layer2,$EntityLayer/Layer3,$EntityLayer/Layer4,$EntityLayer/Layer5]
 @onready var grids_upleft_pos:Vector2 = $BackGroundLayer/BackGroundSprite/MarkerUpLeft.global_position
 @onready var grids_downright_pos:Vector2 = $BackGroundLayer/BackGroundSprite/MarkerDownRight.global_position
 @onready var grid_manager:GridManager = $GridManager
+@onready var find_vision:FindVision = $FindVision
 @export var grids_row:int = 7
 @export var grids_column:int = 9
 

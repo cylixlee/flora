@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgwbm7kndxxn8"]
+[gd_scene load_steps=8 format=3 uid="uid://bgwbm7kndxxn8"]
 
 [ext_resource type="Script" path="res://game/lawn/level/scene/level.gd" id="1_t2vv5"]
 [ext_resource type="Script" path="res://game/lawn/level/scene/grid_manager.gd" id="2_4ryax"]
+[ext_resource type="Script" path="res://game/lawn/level/scene/entity_manager.gd" id="3_7vhrw"]
 [ext_resource type="Texture2D" uid="uid://boc4a1oncpxyy" path="res://assets/flora/fvm/background/布丁岛（日）.jpg" id="3_7yjta"]
+[ext_resource type="Script" path="res://game/lawn/level/scene/find_enemy.gd" id="4_et0rf"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_28hvo"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tl6lh"]
+size = Vector2(815, 567)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_t2vv5")
@@ -30,6 +35,7 @@ position_smoothing_enabled = true
 script = ExtResource("2_4ryax")
 
 [node name="EntityManager" type="Node" parent="."]
+script = ExtResource("3_7vhrw")
 
 [node name="PlayerInput" type="Node" parent="."]
 
@@ -68,3 +74,12 @@ position = Vector2(925.62, 558.678)
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(2096, 2096)
+
+[node name="FindVision" type="Node2D" parent="."]
+script = ExtResource("4_et0rf")
+
+[node name="Area2D" type="Area2D" parent="FindVision"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FindVision/Area2D"]
+position = Vector2(625.5, 333.5)
+shape = SubResource("RectangleShape2D_tl6lh")
