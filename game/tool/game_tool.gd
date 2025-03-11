@@ -12,3 +12,4 @@ func area_get_entity(_area:Area2D,_get_owner:bool = true):##通过area2d获取�
 		if _node.obj_owner:
 			_node = _node.obj_owner
 	return _node
+	

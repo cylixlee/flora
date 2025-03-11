@@ -22,7 +22,7 @@ func set_grid_direction(_vec:Vector2):
 func get_grid_direction() -> Vector2:
 	return grid_direction.normalized()
 
-
+const Z_HEIGHT_FACTOR:float = 1##从global_position的offset转译成z_height的offset用的参数
 const GRID_PATH:String = "res://game/lawn/gameobject/grid/grid.tscn"
 
 signal grid_init_finish
@@ -96,12 +96,30 @@ func get_clicked_single_grid(_pos:Vector2) -> _single_grid:##返回一个被点�
 		return null
 	return single_grids[_pos_array[1]][_pos_array[0]]
 	
-func get_clicked_grid_center(_pos:Vector2):##根据点击坐标返回该格子中心坐标
+func get_clicked_grid_center(_pos:Vector2):##根据点击坐标返回该格子中心真实坐标,偏移后的
 	var _pos_array:Array = get_clicked_grid_pos(_pos)
 	if _pos_array[0] < 0:
 		return Vector2.ZERO
 	var _single_grid_size:Vector2 = Game.level_manager.curr_level.grid_manager.single_grid_size
-	return Vector2(global_position.x + float(_pos_array[0])*_single_grid_size.x,global_position.y + float(_pos_array[1])*_single_grid_size.y)
+	var output:Vector2 = Vector2(global_position.x + float(_pos_array[0])*_single_grid_size.x,global_position.y + float(_pos_array[1])*_single_grid_size.y)
+	output = LawnObject.pos_skew_change(output,clct_area_skew_angle,center_pos.x+grid_get_colomn()*_single_grid_size.x/2.0,true)
+	return output
+
+func grid_get_row() ->int:
+	return single_grids.size()
+	
+func grid_get_colomn() ->int:
+	var output:int = 0
+	if single_grids.size() > 0:
+		output = single_grids[0].size()
+	return output	
+
+func get_grid_zheight(_pos:Vector2):##输入一个物体的center_pos，获取他所处位置的地面z_height
+	var _single_grid_size:Vector2 = Game.level_manager.curr_level.grid_manager.single_grid_size
+	var _right_x:float = center_pos.x+grid_get_colomn()*_single_grid_size.x/2.0
+	return z_height-tan(clct_area_skew_angle)*(_right_x - _pos.x)*Z_HEIGHT_FACTOR
+
+
 
 enum GRID_TYPE{
 	NONE,##虚空

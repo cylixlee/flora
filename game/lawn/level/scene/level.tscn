@@ -79,6 +79,7 @@ size = Vector2i(2096, 2096)
 script = ExtResource("4_et0rf")
 
 [node name="Area2D" type="Area2D" parent="FindVision"]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FindVision/Area2D"]
 position = Vector2(625.5, 333.5)

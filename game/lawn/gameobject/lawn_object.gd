@@ -123,9 +123,10 @@ func pos_in_area(_pos:Vector2)->bool:##检测一个vector2代表的全局坐标�
 	else:
 		return false
 		
-static func pos_skew_change(_pos:Vector2,_skew_angle:float,_right_border_x:float) ->Vector2:
+static func pos_skew_change(_pos:Vector2,_skew_angle:float,_right_border_x:float,_reverse:bool = false) ->Vector2:
 	##静态函数，输入需要改变的位置，倾斜角，以及右侧边界，返回一个右侧边界不变情况下的倾斜操作后的位置
-	
+	if _reverse:
+		return Vector2(_pos.x,_pos.y+tan(_skew_angle)*(_right_border_x-_pos.x))
 	return Vector2(_pos.x,_pos.y-tan(_skew_angle)*(_right_border_x-_pos.x))
 ##==================动画相关===========================
 func shader_init():##Shader初始化,_ready时运行

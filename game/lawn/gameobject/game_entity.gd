@@ -22,25 +22,52 @@ var attack_power_mult:float = 1##攻击力乘算乘区
 
 @export var area_vision:int = 0##视线有几个格子长
 @export var has_special_vision:bool = false ##是否具备特殊索敌，若为true则其索敌不会自动初始化
+##一般来说，针对整行进行索敌的，以及全屏追踪类型，就属于特殊索敌类型
+@export var visions:Array[Area2D] = []##视野，索敌用area2d
+@export var fight_areas:Array[Area2D] = []##近战范围
+@export var is_fight_vision:bool = true##是否直接使用近战范围来索敌
 
+var enemy_type_list:Array[int]##具备那种entity_tag的会被视作敌人
 
 
 func _ready():
 	super()
+	vision_area_init()
 	
 
 
-#func vision_area_init():##索敌视野初始化
-	#if not has_special_vision:
-		#pass
-	#if is_fight_vision:
-		#for _fight_area:Area2D in fight_areas:
-			#visions.append(_fight_area)
-	#for _vision:Area2D in visions:
-		#pass
+func vision_area_init():##索敌视野初始化
+	if has_special_vision:
+		return
+	for _fight_area:Area2D in fight_areas:
+		if is_fight_vision:
+			visions.append(_fight_area)
+		_fight_area.collision_layer = 2
+		_fight_area.collision_mask = 1
+	for _vision:Area2D in visions:
+		_vision.collision_layer = 2
+		_vision.collision_mask = 1
 
+func find_enemy() ->bool:##查询自身索敌范围内是否有敌人，有就返回true
+	if has_special_vision:
+		return true
+	else:
+		var output:bool = false
+		for _area:Area2D in visions:
+			var _get_areas:Array[Area2D] = _area.get_overlapping_areas()
+			for _get_area:Area2D in  _get_areas:
+				var _entity = Game.tool.area_get_entity(_get_area)
+				if _entity is GameEntity:
+					if _entity.object_state == LawnObject.OBJECT_STATE.NORMAL:
+						for _find_type:int in enemy_type_list:
+							for _type:int in _entity.curr_entity_tags:
+								if _find_type == _type and find_enemy_check_zheight(_entity):
+									output = true
+									break
+		return output
 
-
+func find_enemy_check_zheight(_entity:GameEntity):##未完工,关于目标实体的z轴高度是否符合自身可攻击范畴的判定
+	return true
 	
 enum ENTITY_TAG{##实体标签，类似group
 	PLANT,

@@ -23,7 +23,9 @@ func grid_manager_init():##初始化grid_manager,此函数于Level初始化之�
 
 func get_pos_from_dot(_vec2:Array) ->Vector2:
 	##从一个点状vector2（如[0,0],[x,y]）里转化一个global_position（中心位置）出来
-	##此函数不考虑地形偏移
+	##此函数不考虑地形偏移,会把地形转换成一个右对齐的全平面
+	##请保证Level里的BackGroundLayer里的两个Marker是扭曲后的
+	##不支持移动地形,这个函数只用于grid部署
 	var _grid_row:int = Game.level_manager.curr_level.grids_row
 	var _grid_column:int = Game.level_manager.curr_level.grids_column
 	if _vec2[0] >= _grid_column or _vec2[0] < 0 or _vec2[1] >= _grid_row or _vec2[1] < 0:
