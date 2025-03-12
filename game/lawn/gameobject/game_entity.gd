@@ -27,7 +27,18 @@ var attack_power_mult:float = 1##攻击力乘算乘区
 @export var fight_areas:Array[Area2D] = []##近战范围
 @export var is_fight_vision:bool = true##是否直接使用近战范围来索敌
 
-var enemy_type_list:Array[int]##具备那种entity_tag的会被视作敌人
+@export var enemy_type_list:Array[int] = []##具备那种entity_tag的会被视作敌人
+
+@export var use_attack_state:bool = false##使用攻击状态机
+@export var use_move_state:bool = false##使用移动状态机
+@export var use_tick_state:bool = false##使用倒计时状态机
+var attack_state:ATTACK_STATE = ATTACK_STATE.REST
+var move_state:MOVE_STATE = MOVE_STATE.REST
+var tick_state:TICK_STATE = TICK_STATE.REST
+
+var attack_timer:Timer
+var move_timer:Timer
+var tick_timer:Timer
 
 
 func _ready():
@@ -47,6 +58,14 @@ func vision_area_init():##索敌视野初始化
 	for _vision:Area2D in visions:
 		_vision.collision_layer = 2
 		_vision.collision_mask = 1
+		
+func state_machine_init():##状态机初始化
+	if use_attack_state:
+		pass
+	if use_move_state:
+		pass
+	if use_tick_state:
+		pass
 
 func find_enemy() ->bool:##查询自身索敌范围内是否有敌人，有就返回true
 	if has_special_vision:
@@ -69,6 +88,68 @@ func find_enemy() ->bool:##查询自身索敌范围内是否有敌人，有就�
 func find_enemy_check_zheight(_entity:GameEntity):##未完工,关于目标实体的z轴高度是否符合自身可攻击范畴的判定
 	return true
 	
+##============状态机相关=====================================================
+func enter_attack_rest():
+	pass
+
+func leave_attack_rest():
+	pass
+	
+func enter_attack_find_enemy():
+	pass
+	
+func leave_attack_find_enemy():
+	pass
+	
+func enter_attack_do_attack():
+	pass
+	
+func leave_attack_do_attack():
+	pass
+	
+func enter_move_rest():
+	pass
+	
+func leave_move_rest():
+	pass
+	
+func enter_move_do_move():
+	pass
+
+func leave_move_do_move():
+	pass
+	
+func enter_tick_rest():
+	pass
+	
+func leave_tick_rest():
+	pass
+	
+func enter_tick_timeout():
+	pass
+	
+func leave_tick_timeout():
+	pass
+	
+func enter_tick_work():
+	pass
+	
+func leave_tick_work():
+	pass
+
+##==================================================================================
+func enter_game():
+	super()
+	state_machine_start()
+
+func state_machine_start():##启动状态机
+	if use_attack_state:
+		pass
+	if use_move_state:
+		pass
+	if use_tick_state:
+		pass
+
 enum ENTITY_TAG{##实体标签，类似group
 	PLANT,
 	ZOMBIE,
@@ -77,4 +158,21 @@ enum ENTITY_TAG{##实体标签，类似group
 	ZOMBIE_BULLET,
 	OTHER_BULLET,
 	ZOMBIE_ARMOR,##僵尸护甲
+}
+
+enum ATTACK_STATE{##攻击状态机，
+	REST,##休息状态
+	FIND_ENEMY,##索敌状态，通常由计时器触发这个状态
+	ATTACK,##攻击状态
+}
+
+enum MOVE_STATE{##移动状态机
+	REST,##休息状态
+	MOVE,##移动状态
+}
+
+enum TICK_STATE{##以时间为触发条件的状态机，没有其他判定
+	REST,
+	TIME_OUT,
+	WORK,
 }
